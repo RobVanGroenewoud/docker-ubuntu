@@ -4,14 +4,11 @@ MAINTAINER      Rob van Groenewoud <docker@robvangroenewoud.com>
 
 RUN apt-get -qq update && apt-get -qq -y install wget
 
-# Install Java.
-RUN \
-    echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-    add-apt-repository -y ppa:webupd8team/java && \
-    apt-get update && \
-    apt-get install -y oracle-java7-installer && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /var/cache/oracle-jdk7-installer
+# install Oracle JDK 7
+RUN add-apt-repository ppa:webupd8team/java -y
+RUN apt-get update
+RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-get install oracle-java7-installer -y
 
 WORKDIR /data
 
