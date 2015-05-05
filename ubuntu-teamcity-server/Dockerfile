@@ -2,7 +2,7 @@ FROM            robvgroenewoud/ubuntu-jdk7
 
 MAINTAINER      Rob van Groenewoud <docker@robvangroenewoud.com>
 
-RUN apt-get -qq update && apt-get -qq -y tar
+RUN apt-get -qq update && apt-get -qq -y install tar
 
 VOLUME ["/data/teamcity"]
 ENV TEAMCITY_DATA_PATH /data/teamcity
